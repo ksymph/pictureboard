@@ -1,0 +1,10 @@
+{
+	"title": "Test Board",
+	"description": "A board for testing",
+	"variations": 1;
+	"tiles": [
+		"tile0",
+		"tile1"
+	]
+
+}
