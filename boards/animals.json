@@ -1,0 +1,8 @@
+{
+	"title": "Animals",
+	"icon": "/assets/animals_icon.svg",
+	"tiles": [
+		"fox",
+		"foxtest"
+	]
+}
