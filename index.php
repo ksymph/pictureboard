@@ -57,41 +57,55 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 	<main>
 		<div id="board">
 			<?php
+				$colors = [
+					'#FFDDDD', // Light pastel pink
+					'#FFE4CC', // Light pastel peach
+					'#FFFFCC', // Light pastel yellow
+					'#CCFFE5', // Light pastel mint
+					'#CCF2FF', // Light pastel blue
+					'#E5CCFF'  // Light pastel purple
+				];
 				for ($tileNum = 0; $tileNum <= 23; $tileNum++) {
+					$tileColor = $colors[array_rand($colors)];
 					?>
-						<div class="tile" id="tile_<?php echo $tileNum; ?>">
+						<div class="tile">
 						</div>
 					<?php
 				}
 			?>
 		</div>
 
-		<nav>
-			<div class="tab-button">
-				<img class="tab-img" src="/assets/animals_icon.svg" width="64" height="64">
-			</div>
-			<div class="tab-button">
-				<img class="tab-img" src="/tiles/fox/face.png" width="64" height="64">
-			</div>
-		</nav>
 
-
-
-		<form id="test">
-			<label for="test-input">Test input</label>
-			<input id="test-input" type="text">
-			<button type="submit">Submit</button>
-		</form>
-
-
-		<button id="retrieve">Get stored text</button>
-		<div id="output">empty</div>
 
 	</main>
+
+	<nav>
+		<div id="nav-menu-button">
+			<img src="/assets/burger_menu.svg">
+		</div>
+		<div id="nav-boards">
+		</div>
+	</nav>
 
 	<section id="config">
 		<div id="config-container">
 			<button id="debug-button">test</button>
+
+			<fieldset id="board-select">
+				<legend>Boards</legend>
+				<?php
+					$boardsDir = scandir("boards");
+					foreach ($boardsDir as $boardDir) {
+						if ($boardDir === '.' || $boardDir === '..') {} else {
+							$boardData = json_decode(file_get_contents("boards/" . $boardDir), true);
+							$boardId = explode(".", $boardDir)[0];
+							?><input type="checkbox" id="<?php echo $boardId; ?>" name="<?php echo $boardId; ?>"><?php
+							?><label for="<?php echo $boardId; ?>"><?php echo $boardData["title"]; ?></label><br><?php
+						}
+					}
+				?>
+			</fieldset>
+
 		</div>
 	</section>
 

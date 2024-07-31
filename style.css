@@ -16,12 +16,21 @@ body {
 	right: 0;
 	bottom: 64px;
 	padding: 4px;
-	background-color: blue;
+	// background-color: #31468b;
+	// background-color: #67917a;
 
 	grid-template-columns: repeat(var(--col-count), 1fr);
 	grid-template-rows: repeat(var(--row-count), 1fr);
 	grid-column-gap: 0px;
 	grid-row-gap: 0px;
+
+
+	--color-a: #57808b;
+	--color-b: #31638b;
+	background: repeating-linear-gradient(45deg, var(--color-a), var(--color-a) 20px, var(--color-b) 20px, var(--color-b) 40px);
+
+
+
 }
 
 .tile {
@@ -34,7 +43,6 @@ body {
 	border: 2px solid white;
 	border-radius: 8px;
 	background-color: cornflowerblue;
-	overflow: hidden;
 	box-sizing: border-box;
 	position: relative;
 
@@ -43,14 +51,10 @@ body {
 	transform: rotateY(0deg);
 	transition: width 1s, height 1s, left 1s, top 1s, transform 0.5s;
 
-	//animation-name: flip;
-	//animation-duration: 2s;
-	//animation-direction: reverse;
+	transform-style: preserve-3d;
 }
 
 .tile.flipped {
-	//animation-name: flip;
-	//animation-duration: 2s;
 	transform: rotateY(180deg) !important;
 	width: calc(100% - 64px) !important;
 	top: 32px !important;
@@ -58,50 +62,41 @@ body {
 	height: 100% !important;
 }
 
-@keyframes flip {
-	0% {
-		transform: rotateY(0deg);
-	}
-
-	100% {
-		transform: rotateY(90deg);
-	}
-}
-
 .tile img {
 	width: 100%;
 	height: 100%;
 	padding: 8px;
-	object-fit: contain;
+	object-fit: scale-down;
 	box-sizing: border-box;
+	position: absolute;
 
 	grid-column: 1;
 	grid-row: 1;
+
+	backface-visibility: hidden;
 }
 
 .tile video {
-	position: absolute;
-	top: 64px;
-	left: 64px;
-	right: 64px;
-	bottom: 64px;
+	position: relative;
+	width: 100%;
 
 	grid-column: 1;
 	grid-row: 1;
 
-	display: none;
+	transform: rotateY(180deg);
+	backface-visibility: hidden;
 
-	transition: display 0s linear 0.5s;
-	transition-behavior: allow-discrete;
-}
+	border-radius: 8px;
+	background-color: darkblue;
 
-.tile.flipped video {
-	display: block;
-	transform: rotateY(0deg);
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	overflow: auto;
 }
 
 nav {
-	position: absolute;
+	position: fixed;
 	background-color: var(--nav-color);
 	left: 0;
 	right: 0;
@@ -109,7 +104,27 @@ nav {
 	height: 64px;
 
 	display: flex;
+}
+
+#nav-boards {
+	display: flex;
 	justify-content: space-around;
+	width: 100%;
+}
+
+#nav-menu-button {
+	width: 64px;
+	height: 64px;
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#nav-menu-button img {
+	width: 80%;
+	height: 80%;
 }
 
 .tab-button {
@@ -122,4 +137,12 @@ nav {
 	top: 0;
 	background-color: white;
 	z-index: 10;
+	width: 50%;
+	left: -50%;
+	height: calc(100% - 64px);
+	transition: left .3s;
+}
+
+#config.menu-expanded {
+	left: 0;
 }

@@ -3,6 +3,8 @@
 	"icon": "/assets/animals_icon.svg",
 	"tiles": [
 		"fox",
-		"foxtest"
+		"zebra",
+		"lion",
+		"squirrel"
 	]
 }
