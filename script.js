@@ -1,13 +1,6 @@
-const testForm = document.getElementById("test");
-const testInput = document.getElementById("test-input");
-const retrieveButton = document.getElementById("retrieve");
-const output = document.getElementById("output");
-
-const debugButton = document.getElementById("debug-button");
-
-
-const tileGrid = document.querySelectorAll(".tile");
-const boardDom = document.querySelector("#board");
+let tileGrid = document.querySelectorAll(".tile");
+let boardDom = document.querySelector("#board");
+let boardDomBackup = null;
 
 const navBoards = document.querySelector("#nav-boards");
 const menuButton = document.querySelector("#nav-menu-button");
@@ -38,6 +31,22 @@ async function loadTiles() {
 	return tiles;
 }
 
+function shuffle(array) {
+  let currentIndex = array.length;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+}
+
 async function loadBoards(tiles) {
 	const response = await fetch("boards.json");
 	const boardsJson = await response.json();
@@ -56,32 +65,16 @@ async function loadBoards(tiles) {
 	return boards;
 }
 
-/*
-testForm.addEventListener("submit", (event) => {
-	event.preventDefault();
-
-	const text = testInput.value;
-
-	localStorage.setItem("test", text);
-});
-
-*/
-/*
-retrieveButton.addEventListener("click", () => {
-	output.innerText = localStorage.getItem("test");
-
-
-});
-
-*/
-
-debugButton.addEventListener("click", () => {
-	fillBoard("animals")
-
-});
-// let myCallback = () => {};
 function fillBoard(boardId) {
 	board = boards[boardId];
+	shuffle(board.tiles);
+
+	boardDomBackup = boardDom.cloneNode(true);
+	boardDom.parentNode.replaceChild(boardDomBackup, boardDom)
+
+	tileGrid = document.querySelectorAll(".tile");
+	boardDom = document.querySelector("#board");
+
 	for (var i = 0; i < board.tiles.length; i++) {
 		const tileObj = board.tiles[i];
 		const tileDom = tileGrid[i];
@@ -90,7 +83,7 @@ function fillBoard(boardId) {
 
 		tileDom.innerHTML = `
 			<img class="tab-img" src="${tileObj.face}">
-			<video>
+			<video loop>
 				<source src="${tileObj.clips[Math.floor(Math.random()*tileObj.clips.length)]}" type="video/mp4">
 			</video>
 		`;
@@ -194,11 +187,22 @@ function fillNavbar() {
 	const navButtons = navBoards.querySelectorAll(".tab-button");
 	for (const button of navButtons) {
 		button.addEventListener("click", () => {
+			for (const button of navButtons) {
+				button.classList.remove("selected");
+			}
 			fillBoard(button.getAttribute("data-board"));
+			button.classList.add("selected");
+			boardDom.style.display = null;
+			configPane.classList.remove("menu-expanded");
+			menuButton.classList.remove("menu-button-spin");
+			menuButton.classList.remove("selected");
 		});
 	}
 }
 
+function greet() {
+	boardDom.style.display = "none";
+}
 
 async function main() {
 	tiles = await loadTiles();
@@ -207,6 +211,8 @@ async function main() {
 
 	menuButton.addEventListener("click", () => {
 		configPane.classList.toggle("menu-expanded");
+		menuButton.classList.toggle("menu-button-spin");
+		menuButton.classList.toggle("selected");
 	});
 
 	boardSelectCheckboxes.forEach(checkbox => {
@@ -217,6 +223,7 @@ async function main() {
 	});
 
 	fillNavbar();
+	greet();
 }
 
 main()

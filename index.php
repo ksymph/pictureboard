@@ -74,9 +74,13 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 				}
 			?>
 		</div>
-
-
-
+		<div id="greet">
+			<div id="greet-box">
+				<h1>Hello!</h1>
+				<p>Select a board below to start.</p>
+			</div>
+			<img id="greet-arrow" src="/assets/arrow.svg">
+		</div>
 	</main>
 
 	<nav>
@@ -89,8 +93,7 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 
 	<section id="config">
 		<div id="config-container">
-			<button id="debug-button">test</button>
-
+			<h2>Config</h2>
 			<fieldset id="board-select">
 				<legend>Boards</legend>
 				<?php
