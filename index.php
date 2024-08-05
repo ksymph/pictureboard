@@ -76,7 +76,7 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 		</div>
 		<div id="greet">
 			<div id="greet-box">
-				<h1>Hello!</h1>
+				<h1 id="greeting">Hello!</h1>
 				<p>Select a board below to start.</p>
 			</div>
 			<img id="greet-arrow" src="/assets/arrow.svg">

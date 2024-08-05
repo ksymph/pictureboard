@@ -202,6 +202,18 @@ function fillNavbar() {
 
 function greet() {
 	boardDom.style.display = "none";
+
+	const greetingElement = document.getElementById('greeting');
+	const now = new Date();
+	const hours = now.getHours();
+
+	if (hours < 12) {
+		greetingElement.innerText = 'Good morning!';
+	} else if (hours < 18) {
+		greetingElement.innerText = 'Good afternoon!';
+	} else {
+		greetingElement.innerText = 'Good evening!';
+	}
 }
 
 async function main() {
