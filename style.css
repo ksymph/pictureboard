@@ -209,3 +209,11 @@ nav {
 	left: 50vw;
 	transform: translate(-50%, -50%);
 }
+
+#debug {
+	background-color: white;
+	opacity: 50%;
+	position: absolute;
+	z-index: 500;
+	font-family: monospace;
+}

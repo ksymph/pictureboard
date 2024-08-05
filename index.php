@@ -54,6 +54,7 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 	<script src="script.js" defer></script>
 </head>
 <body>
+	<div id="debug">test</div>
 	<main>
 		<div id="board">
 			<?php

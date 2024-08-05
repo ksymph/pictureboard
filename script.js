@@ -8,6 +8,8 @@ const menuButton = document.querySelector("#nav-menu-button");
 const configPane = document.querySelector("#config");
 const boardSelectCheckboxes = document.querySelectorAll("#board-select input");
 
+const debug = document.querySelector("#debug");
+
 let tiles = {};
 let boards = {};
 
@@ -109,6 +111,7 @@ function fillBoard(boardId) {
 				*/
 			} else {
 				console.log("flip!");
+				debug.innerHTML = video.querySelector("source").src;
 				/*
 				positionTileAbsolute(tileDom);
 
@@ -125,7 +128,6 @@ function fillBoard(boardId) {
 				}, 10);
 				window.setTimeout(function() {
 					video.play();
-					// boardDom.style.pointerEvents = null;
 					tileDom.style.pointerEvents = "all";
 				}, 1000);
 				*/
