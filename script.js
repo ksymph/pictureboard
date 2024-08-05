@@ -84,11 +84,11 @@ function fillBoard(boardId) {
 		tileDom.innerHTML = `
 			<img class="tab-img" src="${tileObj.face}">
 			<video loop muted autoplay>
-				<source src="/assets/test.mp4" type="video/mp4">
+				<source src="${tileObj.clips[0]}" type="video/mp4">
 			</video>
 		`;
 
-		// <source src="${tileObj.clips[Math.floor(Math.random()*tileObj.clips.length)]}" type="video/mp4">
+		// <source src="/assets/test.mp4" type="video/mp4">
 
 		const myCallback = () => {
 			const video = tileDom.querySelector("video");
