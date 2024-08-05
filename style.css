@@ -67,7 +67,7 @@ main {
 	transform-style: preserve-3d;
 }
 
-.tile.flipped {
+.tile-bbb.flipped {
 	transform: rotateY(180deg) !important;
 	width: calc(100% - 64px) !important;
 	top: 32px !important;

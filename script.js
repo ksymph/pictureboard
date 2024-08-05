@@ -96,8 +96,8 @@ function fillBoard(boardId) {
 			const video = tileDom.querySelector("video");
 			if(tileDom.classList.contains("flipped")) {
 				console.log("unflip!");
-				// tileDom.classList.toggle("flipped");
-				/*
+				tileDom.classList.toggle("flipped");
+
 				video.pause();
 				boardDom.style.pointerEvents = "none";
 				tileDom.style.pointerEvents = null;
@@ -109,11 +109,11 @@ function fillBoard(boardId) {
 					positionTilesAll()
 					boardDom.style.pointerEvents = null;
 				}, 1000);
-				*/
+
 			} else {
 				console.log("flip!");
 				debug.innerHTML = "";
-				/*
+
 				positionTileAbsolute(tileDom);
 
 				const videoSource = video.querySelector("source");
@@ -123,10 +123,10 @@ function fillBoard(boardId) {
 				boardDom.style.pointerEvents = "none";
 
 				tileDom.style.zIndex = 5;
-				*/
+
 
 				window.setTimeout(function() {
-					// tileDom.classList.toggle("flipped");
+					tileDom.classList.toggle("flipped");
 				}, 10);
 				window.setTimeout(function() {
 					video.play();
@@ -134,6 +134,7 @@ function fillBoard(boardId) {
 				}, 1000);
 
 			}
+			debug.appendChild(video);
 		}
 
 		tileDom.removeEventListener("click", myCallback);
