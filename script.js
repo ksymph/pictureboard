@@ -83,7 +83,7 @@ function fillBoard(boardId) {
 
 		tileDom.innerHTML = `
 			<img class="tab-img" src="${tileObj.face}">
-			<video loop muted autoplay>
+			<video loop muted>
 				<source src="${tileObj.clips[0]}" type="video/mp4">
 			</video>
 		`;
@@ -94,6 +94,7 @@ function fillBoard(boardId) {
 			const video = tileDom.querySelector("video");
 			if(tileDom.classList.contains("flipped")) {
 				console.log("unflip!");
+				/*
 				video.pause();
 				boardDom.style.pointerEvents = "none";
 				tileDom.style.pointerEvents = null;
@@ -105,12 +106,14 @@ function fillBoard(boardId) {
 					positionTilesAll()
 					boardDom.style.pointerEvents = null;
 				}, 1000);
+				*/
 			} else {
 				console.log("flip!");
+				/*
 				positionTileAbsolute(tileDom);
 
-				//const videoSource = video.querySelector("source");
-				//videoSource.src = tileObj.clips[Math.floor(Math.random()*tileObj.clips.length)];
+				const videoSource = video.querySelector("source");
+				videoSource.src = tileObj.clips[Math.floor(Math.random()*tileObj.clips.length)];
 				video.load()
 
 				boardDom.style.pointerEvents = "none";
@@ -125,6 +128,7 @@ function fillBoard(boardId) {
 					// boardDom.style.pointerEvents = null;
 					tileDom.style.pointerEvents = "all";
 				}, 1000);
+				*/
 			}
 		}
 
