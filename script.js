@@ -83,7 +83,7 @@ function fillBoard(boardId) {
 
 		tileDom.innerHTML = `
 			<img class="tab-img" src="${tileObj.face}">
-			<video loop muted>
+			<video loop muted autoplay>
 				<source src="/assets/test.mp4" type="video/mp4">
 			</video>
 		`;
