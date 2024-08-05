@@ -111,7 +111,11 @@ function fillBoard(boardId) {
 				*/
 			} else {
 				console.log("flip!");
-				debug.innerHTML = video.querySelector("source").src;
+				debug.innerHTML = `
+					<video loop muted autoplay>
+						<source src="${tileObj.clips[0]}" type="video/mp4">
+					</video>
+				`;
 				/*
 				positionTileAbsolute(tileDom);
 
