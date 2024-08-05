@@ -96,12 +96,13 @@ function fillBoard(boardId) {
 			const video = tileDom.querySelector("video");
 			if(tileDom.classList.contains("flipped")) {
 				console.log("unflip!");
+				tileDom.classList.toggle("flipped");
 				/*
 				video.pause();
 				boardDom.style.pointerEvents = "none";
 				tileDom.style.pointerEvents = null;
 
-				tileDom.classList.toggle("flipped");
+
 
 				window.setTimeout(function() {
 					tileDom.style = null;
@@ -111,11 +112,7 @@ function fillBoard(boardId) {
 				*/
 			} else {
 				console.log("flip!");
-				debug.innerHTML = `
-					<video loop muted autoplay>
-						<source src="${tileObj.clips[0]}" type="video/mp4">
-					</video>
-				`;
+				debug.innerHTML = "";
 				/*
 				positionTileAbsolute(tileDom);
 
@@ -126,6 +123,7 @@ function fillBoard(boardId) {
 				boardDom.style.pointerEvents = "none";
 
 				tileDom.style.zIndex = 5;
+				*/
 
 				window.setTimeout(function() {
 					tileDom.classList.toggle("flipped");
@@ -134,7 +132,7 @@ function fillBoard(boardId) {
 					video.play();
 					tileDom.style.pointerEvents = "all";
 				}, 1000);
-				*/
+
 			}
 		}
 
