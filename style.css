@@ -217,3 +217,7 @@ nav {
 	z-index: 500;
 	font-family: monospace;
 }
+
+#debug video {
+	width: 512px;
+}
