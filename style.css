@@ -89,6 +89,7 @@ main {
 	grid-row: 1;
 
 	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
 }
 
 .tile video {
@@ -100,6 +101,7 @@ main {
 
 	transform: rotateY(180deg);
 	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
 
 	border-radius: 8px;
 	background-color: darkblue;
