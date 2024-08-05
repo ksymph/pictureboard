@@ -96,7 +96,7 @@ function fillBoard(boardId) {
 			const video = tileDom.querySelector("video");
 			if(tileDom.classList.contains("flipped")) {
 				console.log("unflip!");
-				tileDom.classList.toggle("flipped");
+				// tileDom.classList.toggle("flipped");
 				/*
 				video.pause();
 				boardDom.style.pointerEvents = "none";
@@ -126,7 +126,7 @@ function fillBoard(boardId) {
 				*/
 
 				window.setTimeout(function() {
-					tileDom.classList.toggle("flipped");
+					// tileDom.classList.toggle("flipped");
 				}, 10);
 				window.setTimeout(function() {
 					video.play();
