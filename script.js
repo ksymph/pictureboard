@@ -84,9 +84,11 @@ function fillBoard(boardId) {
 		tileDom.innerHTML = `
 			<img class="tab-img" src="${tileObj.face}">
 			<video loop muted>
-				<source src="${tileObj.clips[Math.floor(Math.random()*tileObj.clips.length)]}" type="video/mp4">
+				<source src="/assets/test.mp4" type="video/mp4">
 			</video>
 		`;
+
+		// <source src="${tileObj.clips[Math.floor(Math.random()*tileObj.clips.length)]}" type="video/mp4">
 
 		const myCallback = () => {
 			const video = tileDom.querySelector("video");
@@ -107,8 +109,8 @@ function fillBoard(boardId) {
 				console.log("flip!");
 				positionTileAbsolute(tileDom);
 
-				const videoSource = video.querySelector("source");
-				videoSource.src = tileObj.clips[Math.floor(Math.random()*tileObj.clips.length)];
+				//const videoSource = video.querySelector("source");
+				//videoSource.src = tileObj.clips[Math.floor(Math.random()*tileObj.clips.length)];
 				video.load()
 
 				boardDom.style.pointerEvents = "none";
