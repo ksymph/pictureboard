@@ -2,6 +2,7 @@ let tileGrid = document.querySelectorAll(".tile");
 let boardDom = document.querySelector("#board");
 let boardDomBackup = null;
 
+const navBar = document.querySelector("nav");
 const navBoards = document.querySelector("#nav-boards");
 const menuButton = document.querySelector("#nav-menu-button");
 
@@ -49,6 +50,15 @@ function shuffle(array) {
   }
 }
 
+function constructBoard(tileCount) {
+	boardDom.innerHTML = "";
+	for (let i = 0; i < tileCount; i++) {
+		const newTile = document.createElement("div");
+		newTile.className = "tile";
+		boardDom.appendChild(newTile);
+	}
+}
+
 async function loadBoards(tiles) {
 	const response = await fetch("boards.json");
 	const boardsJson = await response.json();
@@ -67,8 +77,7 @@ async function loadBoards(tiles) {
 	return boards;
 }
 
-function fillBoard(boardId) {
-	board = boards[boardId];
+function fillBoard(board) {
 	shuffle(board.tiles);
 
 	boardDomBackup = boardDom.cloneNode(true);
@@ -94,25 +103,30 @@ function fillBoard(boardId) {
 
 		const myCallback = () => {
 			const video = tileDom.querySelector("video");
-			if(tileDom.classList.contains("flipped")) {
+
+			if(configPane.classList.contains("menu-expanded")) {
+				configPane.classList.remove("menu-expanded");
+				menuButton.classList.remove("selected");
+			} else if (tileDom.classList.contains("flipped")) {
 				console.log("unflip!");
 				tileDom.classList.toggle("flipped");
 
 				video.pause();
 				boardDom.style.pointerEvents = "none";
 				tileDom.style.pointerEvents = null;
+				navBar.style.pointerEvents = null;
 
 
 
 				window.setTimeout(function() {
 					tileDom.style = null;
-					positionTilesAll()
+					positionTilesAll(tileGrid.length);
 					boardDom.style.pointerEvents = null;
 				}, 1000);
 
 			} else {
 				console.log("flip!");
-				debug.innerHTML = "";
+				// debug.innerHTML = "";
 
 				positionTileAbsolute(tileDom);
 
@@ -121,6 +135,7 @@ function fillBoard(boardId) {
 				video.load()
 
 				boardDom.style.pointerEvents = "none";
+				navBar.style.pointerEvents = "none";
 
 				tileDom.style.zIndex = 5;
 
@@ -134,7 +149,7 @@ function fillBoard(boardId) {
 				}, 1000);
 
 			}
-			debug.appendChild(video);
+			// debug.appendChild(video);
 		}
 
 		tileDom.removeEventListener("click", myCallback);
@@ -143,16 +158,30 @@ function fillBoard(boardId) {
 	}
 }
 
-function positionTilesAll() {
+function positionTilesAll(tileCount) {
+	console.log(tileCount);
 	let rows = 4;
 	let cols = 6;
+	if (tileCount === 24) {
+		rows = 4;
+		cols = 6;
+	} else if (tileCount === 20) {
+		rows = 4;
+		cols = 5;
+	} else if (tileCount === 15) {
+		rows = 3;
+		cols = 5;
+	}
+
+
 	if(window.innerWidth < window.innerHeight) {
-		rows = 6;
-		cols = 4;
+		const rowTemp = rows;
+		rows = cols;
+		cols = rowTemp;
 	}
 	document.body.style.setProperty("--row-count", rows);
 	document.body.style.setProperty("--col-count", cols);
-	for (var i = 0; i < tileGrid.length; i++) {
+	for (var i = 0; i < tileCount; i++) {
 		const y = Math.floor(i / cols) + 1;
 		const x = (i % cols) + 1;
 		tileGrid[i].style.gridColumn = x;
@@ -201,7 +230,11 @@ function fillNavbar() {
 			for (const button of navButtons) {
 				button.classList.remove("selected");
 			}
-			fillBoard(button.getAttribute("data-board"));
+			const currentBoard = boards[button.getAttribute("data-board")];
+			constructBoard(currentBoard.tiles.length);
+			tileGrid = document.querySelectorAll(".tile");
+			positionTilesAll(currentBoard.tiles.length);
+			fillBoard(currentBoard);
 			button.classList.add("selected");
 			boardDom.style.display = null;
 			configPane.classList.remove("menu-expanded");
@@ -230,11 +263,9 @@ function greet() {
 async function main() {
 	tiles = await loadTiles();
 	boards = await loadBoards(tiles);
-	positionTilesAll();
 
 	menuButton.addEventListener("click", () => {
 		configPane.classList.toggle("menu-expanded");
-		menuButton.classList.toggle("menu-button-spin");
 		menuButton.classList.toggle("selected");
 	});
 

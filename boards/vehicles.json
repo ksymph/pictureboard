@@ -1,7 +1,12 @@
 {
 	"title": "Vehicles",
 	"tiles": [
-		"lion",
-		"fox"
+		"plane",
+		"bus",
+		"car",
+		"motorcycle",
+		"dump_truck",
+		"semi_truck",
+		"fire_truck"
 	]
 }

@@ -54,20 +54,11 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 	<script src="script.js" defer></script>
 </head>
 <body>
-	<div id="debug">test</div>
+	<div id="debug"></div>
 	<main>
 		<div id="board">
 			<?php
-				$colors = [
-					'#FFDDDD', // Light pastel pink
-					'#FFE4CC', // Light pastel peach
-					'#FFFFCC', // Light pastel yellow
-					'#CCFFE5', // Light pastel mint
-					'#CCF2FF', // Light pastel blue
-					'#E5CCFF'  // Light pastel purple
-				];
-				for ($tileNum = 0; $tileNum <= 23; $tileNum++) {
-					$tileColor = $colors[array_rand($colors)];
+				for ($tileNum = 0; $tileNum >= 23; $tileNum++) {
 					?>
 						<div class="tile">
 						</div>
@@ -78,7 +69,7 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 		<div id="greet">
 			<div id="greet-box">
 				<h1 id="greeting">Hello!</h1>
-				<p>Select a board below to begin.</p>
+				<p>Select a board below.</p>
 			</div>
 			<img id="greet-arrow" src="/assets/arrow.svg">
 		</div>
@@ -94,7 +85,7 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 
 	<section id="config">
 		<div id="config-container">
-			<h2>Config</h2>
+			<h2>Options</h2>
 			<fieldset id="board-select">
 				<legend>Boards</legend>
 				<?php

@@ -9,6 +9,7 @@
 body {
 	margin: 0;
 	font-family: verdana, arial;
+	user-select: none;
 }
 
 main {
@@ -67,7 +68,7 @@ main {
 	transform-style: preserve-3d;
 }
 
-.tile-bbb.flipped {
+.tile.flipped {
 	transform: rotateY(180deg) !important;
 	width: calc(100% - 64px) !important;
 	top: 32px !important;
@@ -144,7 +145,7 @@ nav {
 	transition: transform .3s;
 }
 
-#nav-menu-button.menu-button-spin {
+#nav-menu-button.selected {
 	transform: rotate(180deg);
 }
 
@@ -222,4 +223,8 @@ nav {
 
 #debug video {
 	width: 512px;
+}
+
+.disabled {
+	pointer-events: none !important;
 }
