@@ -7,6 +7,16 @@
 		"motorcycle",
 		"dump_truck",
 		"semi_truck",
-		"fire_truck"
+		"fire_truck",
+		"garbage_truck",
+		"helicopter",
+		"rocket",
+		"submarine",
+		"tractor",
+		"kayak",
+		"quad",
+		"bulldozer",
+		"cement_truck",
+		"schoolbus"
 	]
 }
