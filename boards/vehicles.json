@@ -17,6 +17,9 @@
 		"quad",
 		"bulldozer",
 		"cement_truck",
-		"schoolbus"
+		"school_bus",
+		"van",
+		"bicycle",
+		"yacht"
 	]
 }
