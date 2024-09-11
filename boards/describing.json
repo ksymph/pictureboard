@@ -16,6 +16,10 @@
 		"long",
 		"short",
 		"full",
-		"empty"
+		"empty",
+		"dirty",
+		"clean",
+		"sharp",
+		"hard"
 	]
 }

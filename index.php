@@ -9,7 +9,7 @@ function generateTilesJson() {
 
 		$fullTileDir = "tiles/" . $tileDir;
 
-		$tileData = json_decode(file_get_contents($fullTileDir . "/tile.json"), true);
+		$tileData = []; // json_decode(file_get_contents($fullTileDir . "/tile.json"), true);
 
 		$tileData["face"] = "/" . $fullTileDir . "/face.png";
 		$tileData["clips"] = [];
