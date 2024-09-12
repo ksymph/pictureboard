@@ -14,6 +14,12 @@ const debug = document.querySelector("#debug");
 let tiles = {};
 let boards = {};
 
+
+if ('serviceWorker' in navigator) {
+   navigator.serviceWorker.register("/serviceworker.js");
+}
+
+
 class Tile {
     constructor(jsonData) {
         this.face = jsonData["face"];
@@ -91,8 +97,12 @@ function fillBoard(board) {
 
         tileDom.innerHTML = null;
 
+        let tile_title = tileObj.title.replace(/_/g, ' ');
+        tile_title = tile_title.charAt(0).toUpperCase() + tile_title.slice(1);
+
         tileDom.innerHTML = `
 			<img class="tab-img" src="${tileObj.face}">
+			<div class="tile-title">${tile_title}</div>
 			<video loop muted>
 				<source src="${tileObj.clips[0]}" type="video/mp4">
 			</video>
@@ -204,16 +214,20 @@ function positionTileAbsolute(tile) {
     tile.style.margin = 0;
 }
 
-function handleBoardSelection(event) {
-    localStorage.setItem("board-" + event.target.name, event.target.checked);
+function handleBoardSelection(checkbox, boardId, checkboxType) {
+    // Save the checkbox state in localStorage based on boardId and checkboxType
+    localStorage.setItem("board-" + boardId + "-" + checkboxType, checkbox.checked);
+
+    // Call the function that updates the navbar
     fillNavbar();
 }
+
 
 function fillNavbar() {
     navBoards.innerHTML = null;
     let isEnabled;
     for (const [name, board] of Object.entries(boards)) {
-        isEnabled = localStorage.getItem("board-" + name);
+        isEnabled = localStorage.getItem("board-" + name + "-enabled");
         if (isEnabled === "true") {
             navBoards.innerHTML += `
 				<div class="tab-button" data-board="${name}">
@@ -230,6 +244,17 @@ function fillNavbar() {
             }
             const currentBoard = boards[button.getAttribute("data-board")];
             constructBoard(currentBoard.tiles.length);
+            isLabeled = localStorage.getItem("board-" + button.getAttribute("data-board") + "-labels");
+
+            if (isLabeled === "true") {
+                boardDom.classList.add("has-labels");
+                debug.innerText = "is labeled";
+            } else {
+                boardDom.classList.remove("has-labels");
+                debug.innerText = "is not labeled";
+            }
+
+
             tileGrid = document.querySelectorAll(".tile");
             positionTilesAll(currentBoard.tiles.length);
             fillBoard(currentBoard);
@@ -268,10 +293,19 @@ async function main() {
     });
 
     boardSelectCheckboxes.forEach(checkbox => {
-        if (localStorage.getItem("board-" + checkbox.id) === "true") {
+        // Determine whether the checkbox is for "Enabled" or "Labels"
+        const checkboxType = checkbox.id.includes("_enabled") ? "enabled" : "labels";
+        const boardId = checkbox.id.split("_")[0]; // Extract the board ID
+
+        // Set the checkbox state from localStorage if it's stored
+        if (localStorage.getItem("board-" + boardId + "-" + checkboxType) === "true") {
             checkbox.checked = true;
         }
-        checkbox.addEventListener("change", handleBoardSelection);
+
+        // Add an event listener for changes
+        checkbox.addEventListener("change", () => {
+            handleBoardSelection(checkbox, boardId, checkboxType);
+        });
     });
 
     fillNavbar();

@@ -1,0 +1,10 @@
+{
+	"theme_color": "cornflowerblue",
+	"background_color": "#31638b",
+	"orientation": "any",
+	"display": "fullscreen",
+	"dir": "auto",
+	"lang": "en-US",
+	"name": "Pictureboard",
+	"start_url": "https://pictureboard.kwikle.me/"
+}

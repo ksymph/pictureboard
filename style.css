@@ -1,10 +1,22 @@
 :root {
-	--nav-color: #404040;
+	--nav-color: #323232;
 	--tile-color: cornflowerblue;
 
 	--row-count: 4;
 	--col-count: 6;
+
+	--color-a: #57808b;
+	--color-b: #31638b;
+	--tile-outline: #d8d8d8;
+	--tile-label: #ffffff40;
 }
+
+@font-face {
+  font-family: "fredoka";
+  font-weight: 500;
+  src: url("/assets/fredoka.ttf") format("truetype");
+}
+
 
 body {
 	margin: 0;
@@ -13,8 +25,6 @@ body {
 }
 
 main {
-	--color-a: #57808b;
-	--color-b: #31638b;
 
 	background: repeating-linear-gradient(45deg, var(--color-a), var(--color-a) 20px, var(--color-b) 20px, var(--color-b) 40px);
 	width: 100vw;
@@ -39,8 +49,7 @@ main {
 	grid-row-gap: 0px;
 
 
-	--color-a: #57808b;
-	--color-b: #31638b;
+
 	background: repeating-linear-gradient(45deg, var(--color-a), var(--color-a) 20px, var(--color-b) 20px, var(--color-b) 40px);
 
 
@@ -54,13 +63,15 @@ main {
 	height: auto;
 
 	margin: 4px;
-	border: 2px solid white;
+	border: 2px solid var(--tile-outline);
 	border-radius: 8px;
 	background-color: var(--tile-color);
 	box-sizing: border-box;
 	position: relative;
 
-	display: grid;
+	display: flex;
+	align-items: center;
+	flex-direction: column-reverse;
 
 	transform: rotateY(0deg);
 	transition: width 1s, height 1s, left 1s, top 1s, transform 0.5s;
@@ -227,4 +238,37 @@ nav {
 
 .disabled {
 	pointer-events: none !important;
+}
+
+#board.has-labels .tile-title {
+	display: block;
+}
+
+#board.has-labels img {
+	height: calc(100% - 1.5em);
+	top: 0;
+}
+
+#board.has-labels .tile:not(.flipped) {
+	overflow: hidden;
+}
+
+#board.has-labels .tile.flipped .tile-title {
+	display: none;
+}
+
+#board .tile-title {
+	display: none;
+
+	position: absolute;
+	font-size: min(1.5em, 4vw);
+	text-align: center;
+	overflow: hidden;
+	max-width: 100%;
+	width: 100%;
+	margin-bottom: 2px;
+
+	background-color: var(--tile-label);
+	box-shadow: 0 0 4px 4px var(--tile-label);
+	font-family: "fredoka";
 }

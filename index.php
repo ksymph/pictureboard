@@ -11,6 +11,7 @@ function generateTilesJson() {
 
 		$tileData = []; // json_decode(file_get_contents($fullTileDir . "/tile.json"), true);
 
+		$tileData["title"] = $tileDir;
 		$tileData["face"] = "/" . $fullTileDir . "/face.png";
 		$tileData["clips"] = [];
 
@@ -94,8 +95,15 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 						if ($boardDir === '.' || $boardDir === '..') {} else {
 							$boardData = json_decode(file_get_contents("boards/" . $boardDir), true);
 							$boardId = explode(".", $boardDir)[0];
-							?><input type="checkbox" id="<?php echo $boardId; ?>" name="<?php echo $boardId; ?>"><?php
-							?><label for="<?php echo $boardId; ?>"><?php echo $boardData["title"]; ?></label><br><?php
+
+							echo '<label>' . $boardData["title"] . '</label><br>';
+							echo '<input type="checkbox" id="' . $boardId . '_enabled" name="' . $boardId . '[enabled]">';
+							echo '<label for="' . $boardId . '_enabled">Enabled</label><br>';
+
+							// "Labels" checkbox
+							echo '<input type="checkbox" id="' . $boardId . '_labels" name="' . $boardId . '[labels]">';
+							echo '<label for="' . $boardId . '_labels">Labels</label><br><br>';
+
 						}
 					}
 				?>
