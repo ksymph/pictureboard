@@ -53,6 +53,9 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 	<title>Pictureboard</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script src="script.js" defer></script>
+
+	<link rel="manifest" href="https://progressier.app/Djxla8eAq1UJkWumNG5V/progressier.json"/>
+<script defer src="https://progressier.app/Djxla8eAq1UJkWumNG5V/script.js"></script>
 </head>
 <body>
 	<div id="debug"></div>

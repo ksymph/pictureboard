@@ -15,9 +15,7 @@ let tiles = {};
 let boards = {};
 
 
-if ('serviceWorker' in navigator) {
-   navigator.serviceWorker.register("/serviceworker.js");
-}
+
 
 
 class Tile {
