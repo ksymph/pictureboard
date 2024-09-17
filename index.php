@@ -54,6 +54,12 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script src="script.js" defer></script>
 </head>
+<script>
+  if (typeof navigator.serviceWorker !== 'undefined') {
+    navigator.serviceWorker.register('sw.js')
+  }
+</script>
+
 <body>
 	<div id="debug"></div>
 	<main>
