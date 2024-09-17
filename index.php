@@ -115,6 +115,10 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 					}
 				?>
 			</fieldset>
+			<br>
+			<label id="cache-checkbox-container" style="display: none;">
+				<input type="checkbox" id="enable-caching-checkbox">Enable offline use (fills 1-2gb on device)
+			</label>
 
 		</div>
 	</section>

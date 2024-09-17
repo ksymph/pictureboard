@@ -23,34 +23,53 @@ function isPWAInstalled() {
   return window.matchMedia('(display-mode: standalone)').matches || localStorage.getItem('pwa-installed') === 'true';
 }
 
-// Handle the `appinstalled` event to store state
+// Handle the `appinstalled` event to store state and show the checkbox
 window.addEventListener('appinstalled', (event) => {
   console.log('PWA installed to home screen');
 
   // Mark the PWA as installed
   localStorage.setItem('pwa-installed', 'true');
 
-  // Send a message to the service worker to start caching files
-  if (navigator.serviceWorker && navigator.serviceWorker.controller) {
-    navigator.serviceWorker.controller.postMessage({
-      type: 'CACHE_TILES'
-    });
-  }
+  // Show the caching checkbox
+  showCachingCheckbox();
 });
 
-// On every page load, check if the app is installed and trigger caching if needed
+// Function to show the checkbox and listen for interactions
+function showCachingCheckbox() {
+  const checkboxContainer = document.getElementById('cache-checkbox-container');
+  const cachingCheckbox = document.getElementById('enable-caching-checkbox');
+
+  // Show the checkbox container
+  checkboxContainer.style.display = 'block';
+
+  // When the checkbox is checked, start caching
+  cachingCheckbox.addEventListener('change', (event) => {
+    if (event.target.checked) {
+      console.log('Checkbox checked, starting caching...');
+
+      // Send a message to the service worker to cache tiles
+      if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+        navigator.serviceWorker.controller.postMessage({
+          type: 'CACHE_TILES'
+        });
+
+        // Optionally store the fact that caching has been enabled
+        localStorage.setItem('tiles-caching-enabled', 'true');
+      }
+    }
+  });
+}
+
+// On every page load, check if the app is installed and show the checkbox if needed
 window.addEventListener('load', () => {
   if (isPWAInstalled()) {
-    console.log('PWA is installed, triggering tile caching...');
+    console.log('PWA is installed, showing caching checkbox...');
 
-    // Send a message to the service worker to cache tiles
-    if (navigator.serviceWorker && navigator.serviceWorker.controller) {
-      navigator.serviceWorker.controller.postMessage({
-        type: 'CACHE_TILES'
-      });
-    }
+    // Show the caching checkbox if the app is installed
+    showCachingCheckbox();
   }
 });
+
 
 
 
