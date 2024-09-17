@@ -18,6 +18,46 @@ let boards = {};
 
 
 
+// Function to check if the PWA is installed
+function isPWAInstalled() {
+  return window.matchMedia('(display-mode: standalone)').matches || localStorage.getItem('pwa-installed') === 'true';
+}
+
+// Handle the `appinstalled` event to store state
+window.addEventListener('appinstalled', (event) => {
+  console.log('PWA installed to home screen');
+
+  // Mark the PWA as installed
+  localStorage.setItem('pwa-installed', 'true');
+
+  // Send a message to the service worker to start caching files
+  if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.postMessage({
+      type: 'CACHE_TILES'
+    });
+  }
+});
+
+// On every page load, check if the app is installed and trigger caching if needed
+window.addEventListener('load', () => {
+  if (isPWAInstalled()) {
+    console.log('PWA is installed, triggering tile caching...');
+
+    // Send a message to the service worker to cache tiles
+    if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage({
+        type: 'CACHE_TILES'
+      });
+    }
+  }
+});
+
+
+
+
+
+
+
 class Tile {
     constructor(jsonData) {
         this.face = jsonData["face"];
