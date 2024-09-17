@@ -23,52 +23,51 @@ function isPWAInstalled() {
   return window.matchMedia('(display-mode: standalone)').matches || localStorage.getItem('pwa-installed') === 'true';
 }
 
-// Handle the `appinstalled` event to store state and show the checkbox
+// Handle the `appinstalled` event to store state and show the button
 window.addEventListener('appinstalled', (event) => {
   console.log('PWA installed to home screen');
 
   // Mark the PWA as installed
   localStorage.setItem('pwa-installed', 'true');
 
-  // Show the caching checkbox
-  showCachingCheckbox();
+  // Show the caching button
+  showCachingButton();
 });
 
-// Function to show the checkbox and listen for interactions
-function showCachingCheckbox() {
-  const checkboxContainer = document.getElementById('cache-checkbox-container');
-  const cachingCheckbox = document.getElementById('enable-caching-checkbox');
+// Function to show the button and listen for interactions
+function showCachingButton() {
+  const buttonContainer = document.getElementById('cache-button-container');
+  const cachingButton = document.getElementById('enable-caching-button');
 
-  // Show the checkbox container
-  checkboxContainer.style.display = 'block';
+  // Show the button container
+  buttonContainer.style.display = 'block';
 
-  // When the checkbox is checked, start caching
-  cachingCheckbox.addEventListener('change', (event) => {
-    if (event.target.checked) {
-      console.log('Checkbox checked, starting caching...');
+  // When the button is clicked, start caching
+  cachingButton.addEventListener('click', () => {
+    console.log('Button clicked, starting caching...');
 
-      // Send a message to the service worker to cache tiles
-      if (navigator.serviceWorker && navigator.serviceWorker.controller) {
-        navigator.serviceWorker.controller.postMessage({
-          type: 'CACHE_TILES'
-        });
+    // Send a message to the service worker to cache tiles
+    if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage({
+        type: 'CACHE_TILES'
+      });
 
-        // Optionally store the fact that caching has been enabled
-        localStorage.setItem('tiles-caching-enabled', 'true');
-      }
+      // Optionally store the fact that caching has been enabled
+      localStorage.setItem('tiles-caching-enabled', 'true');
     }
   });
 }
 
-// On every page load, check if the app is installed and show the checkbox if needed
+// On every page load, check if the app is installed and show the button if needed
 window.addEventListener('load', () => {
   if (isPWAInstalled()) {
-    console.log('PWA is installed, showing caching checkbox...');
+    console.log('PWA is installed, showing caching button...');
 
-    // Show the caching checkbox if the app is installed
-    showCachingCheckbox();
+    // Show the caching button if the app is installed
+    showCachingButton();
   }
 });
+
 
 
 
