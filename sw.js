@@ -31,9 +31,20 @@ self.addEventListener("install", (event) => {
             filesToCache.push(...animalData.clips); // Add all clips to cache
           });
 
-          // Add all files to the cache
-          await cache.addAll(filesToCache);
-          console.log('Files from tiles.json have been cached:', filesToCache);
+          // Cache each file individually and catch errors
+          await Promise.all(
+            filesToCache.map(async (file) => {
+              try {
+                const request = new Request(file);
+                await cache.add(request);
+                console.log(`Cached: ${file}`);
+              } catch (error) {
+                console.error(`Failed to cache: ${file}`, error);
+              }
+            })
+          );
+
+          console.log('All available files from tiles.json have been cached.');
         } catch (error) {
           console.error('Failed to cache tiles.json files:', error);
         }
@@ -48,18 +59,3 @@ workbox.routing.registerRoute(
     cacheName: CACHE
   })
 );
-
-self.addEventListener('activate', (event) => {
-  const cacheWhitelist = [CACHE];
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (!cacheWhitelist.includes(cacheName)) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
-  );
-});
