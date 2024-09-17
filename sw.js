@@ -6,7 +6,7 @@ const CACHE_NAME = 'cool-cache';
 
 // Add whichever assets you want to pre-cache here:
 const PRECACHE_ASSETS = [
-    '/assets/',
+    '/assets/board_vehicles.svg',
     "/tiles/",
     "/boards/"
 ]
