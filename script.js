@@ -23,50 +23,39 @@ function isPWAInstalled() {
   return window.matchMedia('(display-mode: standalone)').matches || localStorage.getItem('pwa-installed') === 'true';
 }
 
-// Handle the `appinstalled` event to store state and show the button
+// Handle the `appinstalled` event to store state and start caching
 window.addEventListener('appinstalled', (event) => {
   console.log('PWA installed to home screen');
 
   // Mark the PWA as installed
   localStorage.setItem('pwa-installed', 'true');
 
-  // Show the caching button
-  showCachingButton();
+  // Start caching immediately
+  startCaching();
 });
 
-// Function to show the button and listen for interactions
-function showCachingButton() {
-  const buttonContainer = document.getElementById('cache-button-container');
-  const cachingButton = document.getElementById('enable-caching-button');
+// Function to start caching
+function startCaching() {
+  console.log('Starting caching...');
 
-  // Show the button container
-  buttonContainer.style.display = 'block';
-
-  // When the button is clicked, start caching
-  cachingButton.addEventListener('click', () => {
-    console.log('Button clicked, starting caching...');
-
-    // Send a message to the service worker to cache tiles
-    if (navigator.serviceWorker && navigator.serviceWorker.controller) {
-      navigator.serviceWorker.controller.postMessage({
-        type: 'CACHE_TILES'
-      });
-
-      // Optionally store the fact that caching has been enabled
-      localStorage.setItem('tiles-caching-enabled', 'true');
-    }
-  });
+  // Send a message to the service worker to cache tiles
+  if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.postMessage({
+      type: 'CACHE_TILES'
+    });
+  }
 }
 
-// On every page load, check if the app is installed and show the button if needed
+// On every page load, check if the app is installed and start caching if needed
 window.addEventListener('load', () => {
   if (isPWAInstalled()) {
-    console.log('PWA is installed, showing caching button...');
+    console.log('PWA is installed, starting caching...');
 
-    // Show the caching button if the app is installed
-    showCachingButton();
+    // Start caching if the app is installed
+    startCaching();
   }
 });
+
 
 
 

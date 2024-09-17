@@ -5,7 +5,7 @@
 	"name": "PictureBoard",
 	"orientation": "any",
 	"scope": "/",
-	"short_name": "PicBoard",
+	"short_name": "PictureBoard",
 	"start_url": "/",
 	"theme_color": "#6495ed",
 	"lang": "en",

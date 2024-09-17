@@ -50,7 +50,7 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Pictureboard</title>
+	<title>PictureBoard</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="manifest" href="/manifest.json">
 	<script src="script.js" defer></script>
@@ -115,10 +115,6 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 					}
 				?>
 			</fieldset>
-			<br>
-			<div id="cache-button-container" style="display: none;">
-				<button id="enable-caching-button">Store videos on device</button> (fills 1-2gb)
-			</div>
     </div>
 
 		</div>
