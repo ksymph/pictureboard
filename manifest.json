@@ -1,10 +1,21 @@
 {
-	"theme_color": "cornflowerblue",
 	"background_color": "#31638b",
+	"dir": "ltr",
+	"display": "standalone",
+	"name": "PictureBoard",
 	"orientation": "any",
-	"display": "fullscreen",
-	"dir": "auto",
-	"lang": "en-US",
-	"name": "Pictureboard",
-	"start_url": "/"
+	"scope": "/",
+	"short_name": "PicBoard",
+	"start_url": "/",
+	"theme_color": "#6495ed",
+	"lang": "en",
+	"icons": [
+		{
+			"src": "/assets/icon.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any"
+		}
+	]
+
 }
