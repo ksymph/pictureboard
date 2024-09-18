@@ -338,9 +338,15 @@ async function main() {
     });
 
     boardSelectCheckboxes.forEach(checkbox => {
+
         // Determine whether the checkbox is for "Enabled" or "Labels"
         const checkboxType = checkbox.id.includes("_enabled") ? "enabled" : "labels";
         const boardId = checkbox.id.split("_")[0]; // Extract the board ID
+
+
+        if (localStorage.getItem("board-" + boardId + "-" + checkboxType) === null) {
+          localStorage.setItem("board-" + boardId + "-" + checkboxType, "true");
+        }
 
         // Set the checkbox state from localStorage if it's stored
         if (localStorage.getItem("board-" + boardId + "-" + checkboxType) === "true") {

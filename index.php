@@ -48,11 +48,17 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 <!doctype html>
 <html lang="en-US">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="An app designed for speech therapy, in which drawn images are tapped to reveal a random live-action video of the item represented.">
+	<link rel="author" href="https://kwikle.me">
+	<meta name="robots" content="index,nofollow">
 	<title>PictureBoard</title>
+	<meta name="application-name" content="PictureBoard">
+	<link rel="icon" type="image/x-icon" href="/assets/icon.png">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="manifest" href="/manifest.json">
+	<meta name="theme-color" content="#31638b">
 	<script src="script.js" defer></script>
 </head>
 <script>
