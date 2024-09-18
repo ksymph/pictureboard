@@ -68,7 +68,7 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 </script>
 
 <body>
-	<div id="debug"></div>
+	<div id="debug" style="display: none;"></div>
 	<main>
 		<div id="board">
 			<?php
