@@ -30,13 +30,13 @@
 	    "src": "assets/screenshot_0.png",
 	    "sizes": "2732x2048",
 	    "type": "image/png",
-	    "platform": "wide",
+	    "platform": "wide"
 	  },
 	  {
 	    "src": "assets/screenshot_1.png",
 	    "sizes": "2048x2732",
 	    "type": "image/png",
-	    "platform": "wide",
-	  },
+	    "platform": "wide"
+	  }
 	]
 }
