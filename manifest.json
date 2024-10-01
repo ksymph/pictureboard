@@ -1,21 +1,28 @@
 {
-	"background_color": "#31638b",
-	"dir": "ltr",
-	"display": "standalone",
-	"name": "PictureBoard",
-	"orientation": "any",
-	"scope": "/",
-	"short_name": "PictureBoard",
-	"start_url": "/",
-	"theme_color": "#6495ed",
-	"lang": "en",
-	"icons": [
-		{
-			"src": "/assets/icon.png",
-			"sizes": "512x512",
-			"type": "image/png",
-			"purpose": "any"
-		}
-	]
-
+  "background_color": "#31638b",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "PictureBoard",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "PictureBoard",
+  "start_url": "/",
+  "theme_color": "#6495ed",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/assets/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "description": "PictureBoard is a speech therapy app featuring grids of drawn images. Tap an image to view a random real-life video of the object. New boards added regularly.",
+  "categories": [
+    "education",
+    "health",
+    "kids",
+    "utilities"
+  ],
+  "id": "picboard"
 }
