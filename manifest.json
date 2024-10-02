@@ -27,16 +27,28 @@
   "id": "picboard",
   "screenshots" : [
 	  {
-	    "src": "assets/screenshot_0.png",
-	    "sizes": "2732x2048",
+	    "src": "assets/screenshot_phone_0.png",
+	    "sizes": "828x1792",
 	    "type": "image/png",
-	    "platform": "wide"
+	    "form_factor": "narrow"
+	  },
+	  {
+	    "src": "assets/screenshot_phone_1.png",
+	    "sizes": "828x1792",
+	    "type": "image/png",
+	    "form_factor": "narrow"
+	  },
+	  {
+	    "src": "assets/screenshot_0.png",
+	    "sizes": "1920x1080",
+	    "type": "image/png",
+	    "form_factor": "wide"
 	  },
 	  {
 	    "src": "assets/screenshot_1.png",
-	    "sizes": "2048x2732",
+	    "sizes": "1920x1080",
 	    "type": "image/png",
-	    "platform": "wide"
+	    "form_factor": "wide"
 	  }
 	]
 }
