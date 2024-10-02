@@ -39,13 +39,13 @@
 	    "form_factor": "narrow"
 	  },
 	  {
-	    "src": "assets/screenshot_0.png",
+	    "src": "assets/screenshot_pc_0.png",
 	    "sizes": "1920x1080",
 	    "type": "image/png",
 	    "form_factor": "wide"
 	  },
 	  {
-	    "src": "assets/screenshot_1.png",
+	    "src": "assets/screenshot_pc_1.png",
 	    "sizes": "1920x1080",
 	    "type": "image/png",
 	    "form_factor": "wide"
