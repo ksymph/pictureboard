@@ -186,6 +186,7 @@ nav {
 	transition: left .3s;
 	background-color: var(--nav-color);
 	color: white;
+	overflow: overlay;
 }
 
 #config-container {
@@ -271,4 +272,8 @@ nav {
 	background-color: var(--tile-label);
 	box-shadow: 0 0 4px 4px var(--tile-label);
 	font-family: "fredoka";
+}
+
+#attributions a {
+	color: white;
 }

@@ -24,6 +24,55 @@ function generateTilesJson() {
 	return $tiles;
 }
 
+function generateAttributionHtml() {
+    // Initialize an empty string to hold the final HTML
+    $htmlOutput = '';
+
+    // Check if the directory exists
+    $directory = "attribution";
+
+    // Scan the directory for JSON files
+    $files = scandir($directory);
+    foreach ($files as $file) {
+        // Only process JSON files
+        if (pathinfo($file, PATHINFO_EXTENSION) === 'json') {
+            // Get the JSON title (without .json)
+            $jsonTitle = pathinfo($file, PATHINFO_FILENAME);
+            // Read the content of the JSON file
+            $jsonContent = file_get_contents($directory . '/' . $file);
+            $data = json_decode($jsonContent, true);
+
+            // Check if JSON decoding was successful
+            if ($data === null) {
+                continue; // Skip this file if there's an error
+            }
+
+            // Start building the HTML for this JSON file
+            $htmlOutput .= "<details>\n\t<summary>$jsonTitle</summary>\n\t<ul>\n";
+
+            // Loop through each creator
+            foreach ($data as $creator) {
+                $creatorName = htmlspecialchars($creator['creator']);
+                $creatorLink = htmlspecialchars($creator['creator_link']);
+                $htmlOutput .= "\t\t<li>\n\t\t\t<a href=\"$creatorLink\">$creatorName</a>\n\t\t\t<ul>\n";
+
+                // Loop through each video
+                foreach ($creator['videos'] as $video) {
+                    $videoUrl = htmlspecialchars($video['url']);
+                    $videoTopic = htmlspecialchars($video['topic']);
+                    $htmlOutput .= "\t\t\t\t<li>\n\t\t\t\t\t<a href=\"$videoUrl\">$videoTopic</a>\n\t\t\t\t</li>\n";
+                }
+
+                $htmlOutput .= "\t\t\t</ul>\n\t\t</li>\n";
+            }
+
+            $htmlOutput .= "\t</ul>\n</details>\n";
+        }
+    }
+
+    return $htmlOutput;
+}
+
 function generateBoardsJson() {
 	$boardsDir = scandir("boards");
 	$boards = [];
@@ -109,7 +158,7 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 							$boardData = json_decode(file_get_contents("boards/" . $boardDir), true);
 							$boardId = explode(".", $boardDir)[0];
 
-							echo '<label>' . $boardData["title"] . '</label><br>';
+							echo '<span>' . $boardData["title"] . '</span><br>';
 							echo '<input type="checkbox" id="' . $boardId . '_enabled" name="' . $boardId . '[enabled]">';
 							echo '<label for="' . $boardId . '_enabled">Enabled</label><br>';
 
@@ -120,6 +169,22 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 						}
 					}
 				?>
+			</fieldset>
+			<h2>Attributions</h2>
+			<fieldset id="attributions">
+				<legend>Videos</legend>
+				<?php echo generateAttributionHtml(); ?>
+			</fieldset>
+			<fieldset id="attributions">
+				<legend>Art</legend>
+				<span>Animals:</span><br>
+				&nbsp<span>Creative Commons CC0</span><br><br>
+
+				<span>Describing Words:</span><br>
+				&nbsp<a href="https://www.teacherspayteachers.com/Store/Speech-Doodles">Speech Doodles</a><br><br>
+
+				<span>Vehicles:</span><br>
+				&nbsp<a href="https://www.teacherspayteachers.com/store/digitalartsi">Digitalartsi</a><br><br>
 			</fieldset>
     </div>
 

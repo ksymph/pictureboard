@@ -1,6 +1,8 @@
 {
 	"title": "Animals",
 	"icon": "/assets/animals_icon.svg",
+	"artist": "Creative Commons CC0",
+	"artist_url": "",
 	"tiles": [
 		"fox",
 		"zebra",
