@@ -27,7 +27,7 @@
 	const output = document.getElementById("output");
 	debutton.addEventListener("click", () => {
 		output.innerHTML = `
-			<video loop muted autoplay>
+			<video loop muted autoplay playsInLine>
 				<source src="/tiles/pig/vid_1.mp4" type="video/mp4">
 			</video>
 		`;
