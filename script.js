@@ -188,9 +188,6 @@ function fillBoard(board) {
                 videoSource.src = tileObj.clips[Math.floor(Math.random() * tileObj.clips.length)];
                 video.load()
 
-                debug.innerHTML = `
-			AAAAA
-		`;
 
                 boardDom.style.pointerEvents = "none";
                 navBar.style.pointerEvents = "none";
