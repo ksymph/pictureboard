@@ -145,17 +145,13 @@ function fillBoard(board) {
         let tile_title = tileObj.title.replace(/_/g, ' ');
         tile_title = tile_title.charAt(0).toUpperCase() + tile_title.slice(1);
 
-        let video = document.createElement('video');
-video.loop = true;
-video.muted = true;
-
-let source = document.createElement('source');
-source.src = tileObj.clips[0];
-source.type = 'video/mp4';
-
-video.appendChild(source);
-tileDom.appendChild(video);
-
+        tileDom.innerHTML = `
+			<img class="tab-img" src="${tileObj.face}">
+			<div class="tile-title">${tile_title}</div>
+			<video loop muted autoplay>
+				<source src="${tileObj.clips[0]}" type="video/mp4">
+			</video>
+		`;
 
 
         // <source src="/assets/test.mp4" type="video/mp4">
