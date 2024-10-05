@@ -189,9 +189,7 @@ function fillBoard(board) {
                 video.load()
 
                 debug.innerHTML = `
-			<video loop muted autoplay>
-				<source src="${tileObj.clips[0]}" type="video/mp4">
-			</video>
+			AAAAA
 		`;
 
                 boardDom.style.pointerEvents = "none";
