@@ -28,7 +28,7 @@
 	debutton.addEventListener("click", () => {
 		output.innerHTML = `
 			<video loop muted autoplay playsInLine>
-				<source src="/tiles/pig/vid_1.mp4" type="video/mp4">
+				<source src="/assets/test.mp4" type="video/mp4">
 			</video>
 		`;
 	});
