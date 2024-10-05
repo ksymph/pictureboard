@@ -109,6 +109,7 @@ file_put_contents("boards.json", json_encode(generateBoardsJson()));
 	<link rel="manifest" href="/manifest.json">
 	<meta name="theme-color" content="#31638b">
 	<script src="script.js" defer></script>
+	<script data-consolejs-channel="85b5f3c4-c976-8579-481e-86024ddda703" src="https://remotejs.com/agent/agent.js"></script>
 </head>
 <script>
   if (typeof navigator.serviceWorker !== 'undefined') {
