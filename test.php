@@ -20,6 +20,7 @@
 <body>
 	<button id="debutton">test.mp4</button>
 	<button id="debutton1">apple.mp4</button>
+	<button id="debutton2">closed.mp4</button>
 	<div id="output"></div>
 </body>
 
@@ -39,6 +40,15 @@
 		output.innerHTML = `
 			<video loop muted autoplay playsInLine>
 				<source src="/assets/test.mp4" type="video/mp4">
+			</video>
+		`;
+	});
+
+	const debutton2 = document.getElementById("debutton2");
+	debutton2.addEventListener("click", () => {
+		output.innerHTML = `
+			<video loop muted autoplay playsInLine>
+				<source src="/tiles/closed/vid_0.mp4" type="video/mp4">
 			</video>
 		`;
 	});
