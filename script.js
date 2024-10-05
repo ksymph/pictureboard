@@ -173,10 +173,11 @@ function fillBoard(board) {
 
 
                 window.setTimeout(function () {
-                    tileDom.style = null;
-                    positionTilesAll(tileGrid.length);
-                    boardDom.style.pointerEvents = null;
-                }, 1000);
+    video.play().catch(error => {
+        console.log("Autoplay prevented, manually triggered play", error);
+    });
+    tileDom.style.pointerEvents = "all";
+}, 1000);
 
             } else {
                 console.log("flip!");
