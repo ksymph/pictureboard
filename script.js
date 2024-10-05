@@ -153,6 +153,7 @@ function fillBoard(board) {
 			</video>
 		`;
 
+
         // <source src="/assets/test.mp4" type="video/mp4">
 
         const myCallback = () => {
@@ -186,6 +187,12 @@ function fillBoard(board) {
                 const videoSource = video.querySelector("source");
                 videoSource.src = tileObj.clips[Math.floor(Math.random() * tileObj.clips.length)];
                 video.load()
+
+                debug.innerHTML = `
+			<video loop muted>
+				<source src="${tileObj.clips[0]}" type="video/mp4">
+			</video>
+		`;
 
                 boardDom.style.pointerEvents = "none";
                 navBar.style.pointerEvents = "none";
@@ -293,10 +300,8 @@ function fillNavbar() {
 
             if (isLabeled === "true") {
                 boardDom.classList.add("has-labels");
-                debug.innerText = "is labeled";
             } else {
                 boardDom.classList.remove("has-labels");
-                debug.innerText = "is not labeled";
             }
 
 
