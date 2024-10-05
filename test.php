@@ -34,7 +34,7 @@
 		`;
 	});
 
-	const debutton1 = document.getElementById("debutton");
+	const debutton1 = document.getElementById("debutton1");
 	debutton1.addEventListener("click", () => {
 		output.innerHTML = `
 			<video loop muted autoplay playsInLine>
